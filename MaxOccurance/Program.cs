@@ -9,13 +9,13 @@ namespace MaxOccurance
 
         static void Main(string[] args)
         {
-            CalcMax calc = new("Computer Science"); // "EDABIT" -> no-reoccurence-test
+            CalcMax calc = new("Computer Science"); // "system admin" ➞ "m, s" | "Computer Science" ➞ "e"
             calc.PopulateDictionary();
-            if (!calc.IsReoccuring()) Console.Write("No Reoccurence");
+            var isReoccuring = calc.IsReoccuring();
+            if (isReoccuring) Console.Write("No Reoccurence");
             else
             {
                 calc.GetHighValueWithKey();
-                calc.IsHighestValue();
                 var chars = calc.GetChars();
                 foreach(var @char in chars)
                 {
