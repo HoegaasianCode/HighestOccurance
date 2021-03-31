@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace MaxOccurance
 {
@@ -6,14 +6,18 @@ namespace MaxOccurance
     {
         private readonly string _string;
         private readonly Dictionary<char, int> LetterPairs;
+        private readonly List<char> CharList;
         private char HighValueKey;
         private int HighValue;
+        private bool IsReoccuring;
 
         public CalcMax(string @string) // "Computer Science"
         {
             _string = @string;
             LetterPairs = new();
+            CharList = new();
             HighValue = 0;
+            IsReoccuring = false;
         }
 
         public void PopulateDictionary()
@@ -26,6 +30,11 @@ namespace MaxOccurance
             }
         }
 
+        public void IsNoReoccurance()
+        {
+            if (HighValue > 1) IsReoccuring = true;
+        }
+
         public void GetHighValueWithKey()
         {
             foreach(var pair in LetterPairs)
@@ -36,22 +45,21 @@ namespace MaxOccurance
                 {
                     HighValue = x;
                     HighValueKey = c;
+                    CharList.Add(c);
                 }
             }
         }
 
         public void IsHighestValue()
         {
+            bool isEqualValue = false;
             LetterPairs.Remove(HighValueKey);
             foreach(var pair in LetterPairs)
             {
-
+                if (pair.Value == HighValue) isEqualValue = true;
             }
         }
 
-        public void IsNoReoccurance()
-        {
 
-        }
     }
 }
