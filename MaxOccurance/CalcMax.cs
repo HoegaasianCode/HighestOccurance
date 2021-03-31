@@ -34,7 +34,7 @@ namespace MaxOccurance
             {
                 int x = pair.Value;
                 char c = pair.Key;
-                if (x > HighValue || x == HighValue && HighValue > 1)
+                if (x > HighValue && x > 1 || x == HighValue && HighValue > 1)
                 {
                     HighValue = x;
                     HighValueKey = c;
