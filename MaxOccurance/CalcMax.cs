@@ -10,7 +10,7 @@ namespace MaxOccurance
         private char HighValueKey;
         private int HighValue;
 
-        public CalcMax(string @string) // "Computer Science"
+        public CalcMax(string @string) // "system admin" ➞ "m, s"
         {
             _string = @string;
             LetterPairs = new();
@@ -28,36 +28,25 @@ namespace MaxOccurance
             }
         }
 
-        public bool IsReoccuring()
-        {
-            if (HighValue > 1) return true;
-            else return false;
-        }
-
         public void GetHighValueWithKey()
         {
             foreach(var pair in LetterPairs)
             {
                 int x = pair.Value;
                 char c = pair.Key;
-                if (x > HighValue)
+                if (x > HighValue || x == HighValue && HighValue > 1)
                 {
                     HighValue = x;
                     HighValueKey = c;
-                    CharList.Add(c);
+                    CharList.Add(HighValueKey);
                 }
             }
         }
 
-        public void IsHighestValue()
+        public bool IsReoccuring()
         {
-            bool isEqualValue = true;
-            while (isEqualValue)
-            {
-                LetterPairs.Remove(HighValueKey);
-                if (LetterPairs.ContainsValue(HighValue)) CharList.Add(HighValueKey);
-                else isEqualValue = false;
-            }
+            if (HighValue > 1) return true;
+            else return false;
         }
 
         public List<char> GetChars() => CharList;
