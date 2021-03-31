@@ -9,7 +9,6 @@ namespace MaxOccurance
         private readonly List<char> CharList;
         private char HighValueKey;
         private int HighValue;
-        private bool IsReoccuring;
 
         public CalcMax(string @string) // "Computer Science"
         {
@@ -17,7 +16,6 @@ namespace MaxOccurance
             LetterPairs = new();
             CharList = new();
             HighValue = 0;
-            IsReoccuring = false;
         }
 
         public void PopulateDictionary()
@@ -26,13 +24,14 @@ namespace MaxOccurance
             {
                 char c = _string[i];
                 if (!LetterPairs.ContainsKey(c)) LetterPairs.Add(c, 1);
-                else if (LetterPairs.ContainsKey(c)) LetterPairs[c]++ ;
+                else LetterPairs[c]++;
             }
         }
 
-        public void IsNoReoccurance()
+        public bool IsReoccuring()
         {
-            if (HighValue > 1) IsReoccuring = true;
+            if (HighValue > 1) return true;
+            else return false;
         }
 
         public void GetHighValueWithKey()
@@ -52,14 +51,15 @@ namespace MaxOccurance
 
         public void IsHighestValue()
         {
-            bool isEqualValue = false;
-            LetterPairs.Remove(HighValueKey);
-            foreach(var pair in LetterPairs)
+            bool isEqualValue = true;
+            while (isEqualValue)
             {
-                if (pair.Value == HighValue) isEqualValue = true;
+                LetterPairs.Remove(HighValueKey);
+                if (LetterPairs.ContainsValue(HighValue)) CharList.Add(HighValueKey);
+                else isEqualValue = false;
             }
         }
 
-
+        public List<char> GetChars() => CharList;
     }
 }
