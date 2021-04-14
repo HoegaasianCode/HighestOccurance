@@ -5,7 +5,7 @@ namespace MaxOccurance
     class Program
     {
         // https://edabit.com/challenge/vtdfueRCmpRGyLAGs
-        // UNFINISHED
+        // SOLVED
 
         static void Main(string[] args)
         {
